@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  minecraft:
+    build: .
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "vanilla"
+      VERSION: "latest"
+      MEMORY: "450M"
+      DIFFICULTY: "normal"
+      GAMEMODE: "survival"
+      MOTD: "Welcome to Abdullah's server!"
+      ONLINE_MODE: "FALSE"
+      OPS: "I_am_Aura_67"
+      DEFAULT_OP: "true"
+    volumes:
+      - minecraft_data:/data
+    restart: unless-stopped
+
+volumes:
+  minecraft_data:
