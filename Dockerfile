@@ -6,7 +6,7 @@ ENV VERSION=latest
 ENV MEMORY=1G
 ENV DIFFICULTY=normal
 ENV GAMEMODE=survival
-ENV MOTD=Welcome to my Minecraft server!
+ENV MOTD="Welcome to my Minecraft server!"
 
 EXPOSE 25565
 
