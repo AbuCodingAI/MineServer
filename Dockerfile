@@ -9,6 +9,8 @@ ENV GAMEMODE=survival
 ENV MOTD="Welcome to Abdullah's server!"
 ENV JVM_OPTS="-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+ParallelRefProcEnabled"
 
+COPY plugins /plugins
+
 EXPOSE 25565
 
 VOLUME ["/data"]
