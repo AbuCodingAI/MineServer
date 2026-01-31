@@ -3,7 +3,7 @@ FROM itzg/minecraft-server:latest
 ENV EULA=TRUE
 ENV TYPE=paper
 ENV VERSION=latest
-ENV MEMORY=384M
+ENV MEMORY=450M
 ENV DIFFICULTY=normal
 ENV GAMEMODE=survival
 ENV MOTD="Welcome to Abdullah's server!"
