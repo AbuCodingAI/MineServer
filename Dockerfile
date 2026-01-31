@@ -7,7 +7,7 @@ ENV MEMORY=450M
 ENV DIFFICULTY=normal
 ENV GAMEMODE=survival
 ENV MOTD="Welcome to Abdullah's server!"
-ENV JVM_OPTS="-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+ParallelRefProcEnabled -XX:G1NewCollectionHeuristicPercent=35 -XX:G1ReservePercent=20 -XX:InitiatingHeapOccupancyPercent=20 -XX:+DisableExplicitGC"
+ENV JVM_OPTS="-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+ParallelRefProcEnabled"
 
 EXPOSE 25565
 
