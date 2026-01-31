@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  minecraft:
+    image: itzg/minecraft-server:latest
+    ports:
+      - "25565:25565"
+    environment:
+      EULA: "TRUE"
+      TYPE: "paper"
+      VERSION: "latest"
+      MEMORY: "1G"
+      DIFFICULTY: "normal"
+      GAMEMODE: "survival"
+      MOTD: "Welcome to Abdullah's Minecraft server!"
+      ONLINE_MODE: "FALSE"
+      OPS: "I_am_Aura_67"
+      DEFAULT_OP: "true"
+    volumes:
+      - minecraft_data:/data
+      - ./plugins:/data/plugins
+    restart: unless-stopped
+
+volumes:
+  minecraft_data:

@@ -1,0 +1,30 @@
+services:
+  - type: web
+    name: minecraft-server
+    runtime: docker
+    plan: standard
+    region: oregon
+    healthCheckPath: /
+    autoDeploy: true
+    envVars:
+      - key: EULA
+        value: "TRUE"
+      - key: TYPE
+        value: paper
+      - key: VERSION
+        value: latest
+      - key: MEMORY
+        value: 1G
+      - key: DIFFICULTY
+        value: normal
+      - key: GAMEMODE
+        value: survival
+      - key: MOTD
+        value: "Welcome to Abdullah's Minecraft server!"
+      - key: ONLINE_MODE
+        value: "FALSE"
+      - key: DEFAULT_OP
+        value: "true"
+    ports:
+      - port: 25565
+        protocol: TCP
