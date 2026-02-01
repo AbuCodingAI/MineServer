@@ -5,16 +5,17 @@ services:
     plan: standard
     region: oregon
     healthCheckPath: null
+    healthCheckDisabled: true
     autoDeploy: true
     envVars:
       - key: EULA
         value: "TRUE"
       - key: TYPE
-        value: paper
+        value: vanilla
       - key: VERSION
         value: latest
       - key: MEMORY
-        value: 512M
+        value: "450M"
       - key: DIFFICULTY
         value: normal
       - key: GAMEMODE
@@ -23,8 +24,6 @@ services:
         value: "Welcome to Abdullah's server!"
       - key: ONLINE_MODE
         value: "FALSE"
-      - key: DEFAULT_OP
-        value: "true"
     ports:
       - port: 25565
         protocol: TCP
