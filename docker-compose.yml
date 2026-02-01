@@ -15,7 +15,8 @@ services:
       MOTD: "Welcome to Abdullah's server!"
       ONLINE_MODE: "FALSE"
       DEFAULT_OP: "true"
-      ENABLE_RCON: "false"
+      ENABLE_RCON: "true"
+      RCON_PASSWORD: "minecraft"
     volumes:
       - minecraft_data:/data
       - ./plugins:/data/plugins:rw
