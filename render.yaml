@@ -4,7 +4,7 @@ services:
     runtime: docker
     plan: standard
     region: oregon
-    healthCheckPath: /
+    healthCheckPath: null
     autoDeploy: true
     envVars:
       - key: EULA
@@ -14,13 +14,13 @@ services:
       - key: VERSION
         value: latest
       - key: MEMORY
-        value: 1G
+        value: 512M
       - key: DIFFICULTY
         value: normal
       - key: GAMEMODE
         value: survival
       - key: MOTD
-        value: "Welcome to Abdullah's Minecraft server!"
+        value: "Welcome to Abdullah's server!"
       - key: ONLINE_MODE
         value: "FALSE"
       - key: DEFAULT_OP
