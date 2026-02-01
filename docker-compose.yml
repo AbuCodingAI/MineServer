@@ -16,6 +16,7 @@ services:
       ONLINE_MODE: "FALSE"
       OPS: "I_am_Aura_67"
       DEFAULT_OP: "true"
+      ENABLE_RCON: "false"
     volumes:
       - minecraft_data:/data
     restart: unless-stopped
