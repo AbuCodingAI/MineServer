@@ -12,9 +12,9 @@ echo "Updating system..."
 apt-get update
 apt-get upgrade -y
 
-# Install Docker
-echo "Installing Docker..."
-apt-get install -y docker.io git
+# Install Docker and docker-compose
+echo "Installing Docker and docker-compose..."
+apt-get install -y docker.io docker-compose git
 
 # Start Docker
 echo "Starting Docker..."
