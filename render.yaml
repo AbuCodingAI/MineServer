@@ -14,7 +14,7 @@ services:
       - key: VERSION
         value: latest
       - key: MEMORY
-        value: 512M
+        value: 1G
       - key: DIFFICULTY
         value: normal
       - key: GAMEMODE
