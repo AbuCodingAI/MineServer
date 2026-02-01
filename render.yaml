@@ -24,6 +24,10 @@ services:
         value: "Welcome to Abdullah's server!"
       - key: ONLINE_MODE
         value: "FALSE"
+      - key: INIT_MEMORY
+        value: "256M"
+      - key: MAX_MEMORY
+        value: "450M"
     ports:
       - port: 25565
         protocol: TCP
