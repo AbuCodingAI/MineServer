@@ -7,9 +7,9 @@ services:
       - "25565:25565"
     environment:
       EULA: "TRUE"
-      TYPE: "vanilla"
+      TYPE: "paper"
       VERSION: "latest"
-      MEMORY: "450M"
+      MEMORY: "512M"
       DIFFICULTY: "normal"
       GAMEMODE: "survival"
       MOTD: "Welcome to Abdullah's server!"
@@ -19,6 +19,8 @@ services:
       ENABLE_RCON: "false"
     volumes:
       - minecraft_data:/data
+      - ./plugins:/data/plugins:rw
+    user: "1000:1000"
     restart: unless-stopped
 
 volumes:
