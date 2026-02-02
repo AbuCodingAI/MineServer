@@ -9,7 +9,7 @@ services:
       EULA: "TRUE"
       TYPE: "paper"
       VERSION: "latest"
-      MEMORY: "512M"
+      MEMORY: "2G"
       DIFFICULTY: "normal"
       GAMEMODE: "survival"
       MOTD: "Welcome to Abdullah's server!"
