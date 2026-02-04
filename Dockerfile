@@ -1,12 +1,13 @@
 FROM itzg/minecraft-server:latest
 
 ENV EULA=TRUE
-ENV TYPE=vanilla
+ENV TYPE=paper
 ENV VERSION=latest
-ENV MEMORY=450M
+ENV MEMORY=8G
 ENV DIFFICULTY=normal
 ENV GAMEMODE=survival
 ENV MOTD="Welcome to Abdullah's server!"
+ENV ONLINE_MODE=FALSE
 ENV JVM_OPTS="-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+ParallelRefProcEnabled"
 
 EXPOSE 25565
