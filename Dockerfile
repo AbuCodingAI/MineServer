@@ -6,7 +6,7 @@ ENV VERSION=latest
 ENV MEMORY=8G
 ENV DIFFICULTY=normal
 ENV GAMEMODE=survival
-ENV MOTD="Welcome to Abdullah's server!"
+ENV MOTD="Welcome to the SchoolMC server!"
 ENV ONLINE_MODE=FALSE
 ENV JVM_OPTS="-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+ParallelRefProcEnabled"
 

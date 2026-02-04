@@ -12,7 +12,7 @@ services:
       MEMORY: "8G"
       DIFFICULTY: "normal"
       GAMEMODE: "survival"
-      MOTD: "Welcome to Abdullah's server!"
+      MOTD: "Welcome to the SchoolMC server!"
       ONLINE_MODE: "FALSE"
       DEFAULT_OP: "true"
       ENABLE_RCON: "true"
