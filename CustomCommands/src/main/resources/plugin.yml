@@ -1,0 +1,14 @@
+name: CustomCommands
+version: 1.0
+main: com.aura.customcommands.CustomCommandsPlugin
+description: Custom commands for testing
+commands:
+  spawnancientdebris:
+    description: Spawn a 30x30x30 cube of ancient debris
+    usage: /spawnancientdebris
+  spawndiamonds:
+    description: Spawn a 30x30x30 cube of diamonds
+    usage: /spawndiamonds
+  makebox:
+    description: Make a 30x30x30 hollow box with wooden planks
+    usage: /makebox

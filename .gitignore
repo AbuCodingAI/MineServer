@@ -1,3 +1,6 @@
 minecraft_data/
+server-data/
 .DS_Store
 *.log
+oracle-key.pem
+*.pem

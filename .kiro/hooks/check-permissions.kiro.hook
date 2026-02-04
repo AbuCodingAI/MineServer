@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Check Permissions on Change",
+  "description": "Automatically checks file permissions whenever any file is edited, created, or deleted in the workspace",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Check the permissions for the file that was just changed. Verify that the current user has appropriate access rights and report any permission issues."
+  }
+}
