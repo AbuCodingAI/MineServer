@@ -3,7 +3,7 @@ FROM itzg/minecraft-server:latest
 ENV EULA=TRUE
 ENV TYPE=paper
 ENV VERSION=latest
-ENV MEMORY=8G
+ENV MEMORY=10G
 ENV DIFFICULTY=normal
 ENV GAMEMODE=survival
 ENV MOTD="Welcome to the SchoolMC server!"

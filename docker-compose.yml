@@ -9,7 +9,7 @@ services:
       EULA: "TRUE"
       TYPE: "paper"
       VERSION: "latest"
-      MEMORY: "8G"
+      MEMORY: "10G"
       DIFFICULTY: "normal"
       GAMEMODE: "survival"
       MOTD: "Welcome to the SchoolMC server!"

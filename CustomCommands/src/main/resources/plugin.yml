@@ -12,3 +12,12 @@ commands:
   makebox:
     description: Make a 30x30x30 hollow box with wooden planks
     usage: /makebox
+  spawn:
+    description: Spawn any block type in a cube
+    usage: /spawn <block_name> [size]
+  lobby:
+    description: Join a lobby/gamemode
+    usage: /lobby <gamemode>
+  givearmor:
+    description: Give yourself full enchanted netherite armor
+    usage: /givearmor
