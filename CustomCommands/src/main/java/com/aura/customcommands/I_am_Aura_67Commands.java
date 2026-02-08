@@ -211,10 +211,17 @@ public class I_am_Aura_67Commands implements CommandExecutor {
         ItemStack leggings = new ItemStack(Material.NETHERITE_LEGGINGS);
         ItemStack boots = new ItemStack(Material.NETHERITE_BOOTS);
 
-        addEnchantments(helmet);
-        addEnchantments(chestplate);
-        addEnchantments(leggings);
-        addEnchantments(boots);
+        // Add universal enchantments to all pieces
+        addUniversalEnchantments(helmet);
+        addUniversalEnchantments(chestplate);
+        addUniversalEnchantments(leggings);
+        addUniversalEnchantments(boots);
+
+        // Add specific enchantments based on armor piece
+        addHelmetEnchantments(helmet);
+        addChestplateEnchantments(chestplate);
+        addLeggingsEnchantments(leggings);
+        addBootsEnchantments(boots);
 
         player.getInventory().setHelmet(helmet);
         player.getInventory().setChestplate(chestplate);
@@ -224,10 +231,40 @@ public class I_am_Aura_67Commands implements CommandExecutor {
         player.sendMessage("§a[Armor] You have been given full enchanted netherite armor!");
     }
 
-    private void addEnchantments(ItemStack item) {
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.THORNS, 255);
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+    private void addUniversalEnchantments(ItemStack item) {
+        // Universal enchantments for all armor pieces
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 3);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 1);
+    }
+
+    private void addHelmetEnchantments(ItemStack helmet) {
+        // Helmet-specific enchantments
+        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
+        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.RESPIRATION, 3);
+        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.AQUA_AFFINITY, 1);
+    }
+
+    private void addChestplateEnchantments(ItemStack chestplate) {
+        // Chestplate-specific enchantments
+        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
+        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.THORNS, 3);
+        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.BLAST_PROTECTION, 4);
+    }
+
+    private void addLeggingsEnchantments(ItemStack leggings) {
+        // Leggings-specific enchantments
+        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
+        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FIRE_PROTECTION, 4);
+        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROJECTILE_PROTECTION, 4);
+    }
+
+    private void addBootsEnchantments(ItemStack boots) {
+        // Boots-specific enchantments
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FEATHER_FALLING, 4);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.DEPTH_STRIDER, 3);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FROST_WALKER, 2);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SOUL_SPEED, 3);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SWIFT_SNEAK, 3);
     }
 }
