@@ -11,6 +11,21 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class CraftingListener {
 
     public static void registerRecipes(JavaPlugin plugin) {
+        // Mjolnir Recipe: Mace + Trident (with Channeling and Loyalty)
+        ItemStack mjolnir = createMjolnir();
+        NamespacedKey mjolnirKey = new NamespacedKey(plugin, "mjolnir");
+        ShapedRecipe mjolnirRecipe = new ShapedRecipe(mjolnirKey, mjolnir);
+        
+        mjolnirRecipe.shape(
+            "MT",
+            "MT",
+            "MT"
+        );
+        mjolnirRecipe.setIngredient('M', Material.MACE);
+        mjolnirRecipe.setIngredient('T', Material.TRIDENT);
+        
+        Bukkit.addRecipe(mjolnirRecipe);
+
         // Iron Man Gloves Recipe: 8 iron ingots + 1 beacon in center
         ItemStack gloves = createIronManGloves();
         NamespacedKey glovesKey = new NamespacedKey(plugin, "iron_man_gloves");
@@ -25,6 +40,43 @@ public class CraftingListener {
         glovesRecipe.setIngredient('B', Material.BEACON);
         
         Bukkit.addRecipe(glovesRecipe);
+
+        // Captain America Shield Recipe: Shield + Loyalty book + Unbreaking book
+        ItemStack shield = createCaptainShield();
+        NamespacedKey shieldKey = new NamespacedKey(plugin, "captain_shield");
+        ShapedRecipe shieldRecipe = new ShapedRecipe(shieldKey, shield);
+        
+        shieldRecipe.shape(
+            "SLS",
+            "LUL",
+            "SLS"
+        );
+        shieldRecipe.setIngredient('S', Material.SHIELD);
+        shieldRecipe.setIngredient('L', Material.LAPIS_LAZULI);
+        shieldRecipe.setIngredient('U', Material.DIAMOND);
+        
+        Bukkit.addRecipe(shieldRecipe);
+    }
+
+    private static ItemStack createMjolnir() {
+        ItemStack mjolnir = new ItemStack(Material.MACE);
+        ItemMeta meta = mjolnir.getItemMeta();
+        if (meta != null) {
+            meta.setDisplayName("§6§lMjolnir");
+            meta.setLore(java.util.Arrays.asList(
+                    "§7The mighty hammer of Thor",
+                    "§7Breach, Windblast, Density",
+                    "§7Summons lightning on hit",
+                    "§7Always returns to wielder"
+            ));
+            mjolnir.setItemMeta(meta);
+        }
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.BREACH, 4);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.WIND_BURST, 3);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.DENSITY, 5);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.CHANNELING, 1);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.LOYALTY, 3);
+        return mjolnir;
     }
 
     private static ItemStack createIronManGloves() {
@@ -39,9 +91,27 @@ public class CraftingListener {
             ));
             gloves.setItemMeta(meta);
         }
-        gloves.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
-        gloves.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
-        gloves.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+        gloves.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
+        gloves.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 3);
+        gloves.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 1);
         return gloves;
+    }
+
+    private static ItemStack createCaptainShield() {
+        ItemStack shield = new ItemStack(Material.SHIELD);
+        ItemMeta meta = shield.getItemMeta();
+        if (meta != null) {
+            meta.setDisplayName("§9§lCaptain America Shield");
+            meta.setLore(java.util.Arrays.asList(
+                    "§7The legendary vibranium shield",
+                    "§7Right-click to throw",
+                    "§7Deals 4 hearts damage",
+                    "§7Returns with Loyalty"
+            ));
+            shield.setItemMeta(meta);
+        }
+        shield.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.LOYALTY, 3);
+        shield.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 3);
+        return shield;
     }
 }

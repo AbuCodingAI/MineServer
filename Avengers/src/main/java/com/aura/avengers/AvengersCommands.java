@@ -52,11 +52,11 @@ public
             ));
             mjolnir.setItemMeta(meta);
         }
-        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.BREACH, 255);
-        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.WIND_BURST, 255);
-        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.DENSITY, 255);
-        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.CHANNELING, 255);
-        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.LOYALTY, 255);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.BREACH, 1);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.WIND_BURST, 3);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.DENSITY, 5);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.CHANNELING, 1);
+        mjolnir.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.LOYALTY, 3);
 
         player.getInventory().addItem(mjolnir);
         player.sendMessage("§6[Avengers] You have received Mjolnir!");
@@ -108,9 +108,9 @@ public
     }
 
     private void addIronManEnchantments(ItemStack item) {
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 3);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 1);
     }
 
     private void giveCaptainShield(Player player) {
@@ -126,8 +126,8 @@ public
             ));
             shield.setItemMeta(meta);
         }
-        shield.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.LOYALTY, 255);
-        shield.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
+        shield.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.LOYALTY, 3);
+        shield.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 3);
 
         player.getInventory().addItem(shield);
         player.sendMessage("§9[Avengers] You have received Captain America Shield!");
