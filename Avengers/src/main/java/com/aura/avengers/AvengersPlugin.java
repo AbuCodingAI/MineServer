@@ -1,0 +1,42 @@
+package com.aura.avengers;
+
+import org.bukkit.plugin.java.JavaPlugin;
+
+public class AvengersPlugin extends JavaPlugin {
+
+    @Override
+    public void onEnable() {
+        AvengersCommands commands = new AvengersCommands();
+        MjolnirListener mjolnirListener = new MjolnirListener();
+        IronManListener ironManListener = new IronManListener();
+        CaptainShieldListener shieldListener = new CaptainShieldListener();
+        HawkeyeListener hawkeyeListener = new HawkeyeListener();
+
+        if (getCommand("mjolnir") != null) {
+            getCommand("mjolnir").setExecutor(commands);
+        }
+        if (getCommand("ironman") != null) {
+            getCommand("ironman").setExecutor(commands);
+        }
+        if (getCommand("captainshield") != null) {
+            getCommand("captainshield").setExecutor(commands);
+        }
+        if (getCommand("hawkeyearrows") != null) {
+            getCommand("hawkeyearrows").setExecutor(commands);
+        }
+
+        getServer().getPluginManager().registerEvents(mjolnirListener, this);
+        getServer().getPluginManager().registerEvents(ironManListener, this);
+        getServer().getPluginManager().registerEvents(shieldListener, this);
+        getServer().getPluginManager().registerEvents(hawkeyeListener, this);
+
+        CraftingListener.registerRecipes(this);
+
+        getLogger().info("Avengers plugin enabled!");
+    }
+
+    @Override
+    public void onDisable() {
+        getLogger().info("Avengers plugin disabled!");
+    }
+}
