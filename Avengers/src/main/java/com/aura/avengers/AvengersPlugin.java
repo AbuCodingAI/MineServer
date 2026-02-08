@@ -15,6 +15,7 @@ public class AvengersPlugin extends JavaPlugin {
         IronManListener ironManListener = new IronManListener();
         CaptainShieldListener shieldListener = new CaptainShieldListener();
         HawkeyeListener hawkeyeListener = new HawkeyeListener();
+        DisenchantingTableListener disenchantingListener = new DisenchantingTableListener();
 
         if (getCommand("mjolnir") != null) {
             getCommand("mjolnir").setExecutor(commands);
@@ -33,8 +34,10 @@ public class AvengersPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(ironManListener, this);
         getServer().getPluginManager().registerEvents(shieldListener, this);
         getServer().getPluginManager().registerEvents(hawkeyeListener, this);
+        getServer().getPluginManager().registerEvents(disenchantingListener, this);
 
         CraftingListener.registerRecipes(this);
+        CraftingListener.registerDisenchantingTableRecipe(this);
 
         getLogger().info("Avengers plugin enabled!");
     }

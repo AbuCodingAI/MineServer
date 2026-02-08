@@ -3,8 +3,8 @@ package com.aura.avengers;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.NamespacedKey;
-import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.ShapedRecipe;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -15,57 +15,57 @@ public class CraftingListener {
         ItemStack mjolnir = createMjolnir();
         NamespacedKey mjolnirKey = new NamespacedKey(plugin, "mjolnir");
         ShapedRecipe mjolnirRecipe = new ShapedRecipe(mjolnirKey, mjolnir);
-        
+
         mjolnirRecipe.shape(
-            "MT"
+                "MT"
         );
         mjolnirRecipe.setIngredient('M', Material.MACE);
         mjolnirRecipe.setIngredient('T', Material.TRIDENT);
-        
+
         Bukkit.addRecipe(mjolnirRecipe);
 
         // Iron Man Gloves Recipe: 8 iron ingots + 1 beacon in center
         ItemStack gloves = createIronManGloves();
         NamespacedKey glovesKey = new NamespacedKey(plugin, "iron_man_gloves");
         ShapedRecipe glovesRecipe = new ShapedRecipe(glovesKey, gloves);
-        
+
         glovesRecipe.shape(
-            "III",
-            "IBI",
-            "III"
+                "III",
+                "IBI",
+                "III"
         );
         glovesRecipe.setIngredient('I', Material.IRON_INGOT);
         glovesRecipe.setIngredient('B', Material.BEACON);
-        
+
         Bukkit.addRecipe(glovesRecipe);
 
         // Vibranium Recipe: 9 iron blocks → 1 vibranium
         ItemStack vibranium = createVibranium();
         NamespacedKey vibraniumKey = new NamespacedKey(plugin, "vibranium");
         ShapedRecipe vibraniumRecipe = new ShapedRecipe(vibraniumKey, vibranium);
-        
+
         vibraniumRecipe.shape(
-            "III",
-            "III",
-            "III"
+                "III",
+                "III",
+                "III"
         );
         vibraniumRecipe.setIngredient('I', Material.IRON_BLOCK);
-        
+
         Bukkit.addRecipe(vibraniumRecipe);
 
         // Captain America Shield Recipe: 9 vibranium + 1 shield in center
         ItemStack shield = createCaptainShield();
         NamespacedKey shieldKey = new NamespacedKey(plugin, "captain_shield");
         ShapedRecipe shieldRecipe = new ShapedRecipe(shieldKey, shield);
-        
+
         shieldRecipe.shape(
-            "VVV",
-            "VSV",
-            "VVV"
+                "VVV",
+                "VSV",
+                "VVV"
         );
         shieldRecipe.setIngredient('V', Material.LAPIS_BLOCK);
         shieldRecipe.setIngredient('S', Material.SHIELD);
-        
+
         Bukkit.addRecipe(shieldRecipe);
     }
 
@@ -138,5 +138,29 @@ public class CraftingListener {
         shield.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.LOYALTY, 3);
         shield.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 3);
         return shield;
+    }
+
+    public static void registerDisenchantingTableRecipe(JavaPlugin plugin) {
+        // Disenchanting Table Recipe: Lapis on top, Obsidian on bottom, Diamonds and Book in middle
+        ItemStack disenchantingTable = new ItemStack(Material.ENCHANTING_TABLE);
+        ItemMeta tableMeta = disenchantingTable.getItemMeta();
+        if (tableMeta != null) {
+            tableMeta.setDisplayName("§5§lDisenchanting Table");
+            disenchantingTable.setItemMeta(tableMeta);
+        }
+        NamespacedKey tableKey = new NamespacedKey(plugin, "disenchanting_table");
+        ShapedRecipe tableRecipe = new ShapedRecipe(tableKey, disenchantingTable);
+
+        tableRecipe.shape(
+                "LLL",
+                "DBD",
+                "OOO"
+        );
+        tableRecipe.setIngredient('L', Material.LAPIS_LAZULI);
+        tableRecipe.setIngredient('D', Material.DIAMOND);
+        tableRecipe.setIngredient('B', Material.BOOK);
+        tableRecipe.setIngredient('O', Material.OBSIDIAN);
+
+        Bukkit.addRecipe(tableRecipe);
     }
 }
