@@ -233,38 +233,38 @@ public class I_am_Aura_67Commands implements CommandExecutor {
 
     private void addUniversalEnchantments(ItemStack item) {
         // Universal enchantments for all armor pieces
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 3);
-        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 1);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
     }
 
     private void addHelmetEnchantments(ItemStack helmet) {
         // Helmet-specific enchantments
-        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
-        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.RESPIRATION, 3);
-        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.AQUA_AFFINITY, 1);
+        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
+        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.RESPIRATION, 255);
+        helmet.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.AQUA_AFFINITY, 255);
     }
 
     private void addChestplateEnchantments(ItemStack chestplate) {
         // Chestplate-specific enchantments
-        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
-        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.THORNS, 3);
-        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.BLAST_PROTECTION, 4);
+        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
+        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.THORNS, 255);
+        chestplate.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.BLAST_PROTECTION, 255);
     }
 
     private void addLeggingsEnchantments(ItemStack leggings) {
         // Leggings-specific enchantments
-        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
-        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FIRE_PROTECTION, 4);
-        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROJECTILE_PROTECTION, 4);
+        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
+        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FIRE_PROTECTION, 255);
+        leggings.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROJECTILE_PROTECTION, 255);
     }
 
     private void addBootsEnchantments(ItemStack boots) {
         // Boots-specific enchantments
-        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 4);
-        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FEATHER_FALLING, 4);
-        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.DEPTH_STRIDER, 3);
-        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FROST_WALKER, 2);
-        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SOUL_SPEED, 3);
-        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SWIFT_SNEAK, 3);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FEATHER_FALLING, 255);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.DEPTH_STRIDER, 255);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FROST_WALKER, 255);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SOUL_SPEED, 255);
+        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SWIFT_SNEAK, 255);
     }
 }
