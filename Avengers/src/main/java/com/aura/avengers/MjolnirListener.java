@@ -12,13 +12,13 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.util.Vector;
 
 public class MjolnirListener implements Listener {
 
     private Map<UUID, Long> chargeStartTime = new HashMap<>();
+    private Map<UUID, BukkitRunnable> chargeTask = new HashMap<>();
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event) {
@@ -36,24 +36,24 @@ public class MjolnirListener implements Listener {
 
                 event.setCancelled(true);
 
-                // Start charging
+                // Start charging if not already charging
                 if (!chargeStartTime.containsKey(player.getUniqueId())) {
                     chargeStartTime.put(player.getUniqueId(), System.currentTimeMillis());
                     player.sendMessage("§6[Mjolnir] Charging throw... (3 seconds)");
 
-                    // Check after 3 seconds if still holding
-                    new BukkitRunnable() {
+                    // Schedule throw after 3 seconds
+                    BukkitRunnable task = new BukkitRunnable() {
                         @Override
                         public void run() {
                             if (chargeStartTime.containsKey(player.getUniqueId())) {
-                                long elapsed = System.currentTimeMillis() - chargeStartTime.get(player.getUniqueId());
-                                if (elapsed >= 3000) {
-                                    throwMjolnir(player, item);
-                                    chargeStartTime.remove(player.getUniqueId());
-                                }
+                                throwMjolnir(player, item);
+                                chargeStartTime.remove(player.getUniqueId());
+                                chargeTask.remove(player.getUniqueId());
                             }
                         }
-                    }.runTaskLater(AvengersPlugin.getInstance(), 60);
+                    };
+                    task.runTaskLater(AvengersPlugin.getInstance(), 60); // 3 seconds = 60 ticks
+                    chargeTask.put(player.getUniqueId(), task);
                 }
             }
         } else if ((event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
@@ -65,32 +65,46 @@ public class MjolnirListener implements Listener {
                 chargeStartTime.put(player.getUniqueId(), System.currentTimeMillis());
                 player.sendMessage("§6[Mjolnir] Summoning... Hold right click for 3 seconds");
 
-                // Check after 3 seconds
-                new BukkitRunnable() {
+                // Schedule summon after 3 seconds
+                BukkitRunnable task = new BukkitRunnable() {
                     @Override
                     public void run() {
                         if (chargeStartTime.containsKey(player.getUniqueId())) {
-                            long elapsed = System.currentTimeMillis() - chargeStartTime.get(player.getUniqueId());
-                            if (elapsed >= 3000) {
-                                summonMjolnir(player);
-                                chargeStartTime.remove(player.getUniqueId());
-                            }
+                            summonMjolnir(player);
+                            chargeStartTime.remove(player.getUniqueId());
+                            chargeTask.remove(player.getUniqueId());
                         }
                     }
-                }.runTaskLater(AvengersPlugin.getInstance(), 60);
+                };
+                task.runTaskLater(AvengersPlugin.getInstance(), 60);
+                chargeTask.put(player.getUniqueId(), task);
             }
         }
     }
 
     @EventHandler
-    public void onPlayerReleaseClick(org.bukkit.event.player.PlayerItemHeldEvent event) {
+    public void onPlayerLeftClick(PlayerInteractEvent event) {
         Player player = event.getPlayer();
-        chargeStartTime.remove(player.getUniqueId());
+
+        // Cancel charge on left click
+        if (event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_AIR
+                || event.getAction() == org.bukkit.event.block.Action.LEFT_CLICK_BLOCK) {
+
+            UUID uuid = player.getUniqueId();
+            if (chargeStartTime.containsKey(uuid)) {
+                chargeStartTime.remove(uuid);
+                if (chargeTask.containsKey(uuid)) {
+                    chargeTask.get(uuid).cancel();
+                    chargeTask.remove(uuid);
+                }
+                player.sendMessage("§c[Mjolnir] Charge cancelled!");
+            }
+        }
     }
 
     private void summonMjolnir(Player player) {
         ItemStack mjolnir = new ItemStack(Material.MACE);
-        ItemMeta meta = mjolnir.getItemMeta();
+        org.bukkit.inventory.meta.ItemMeta meta = mjolnir.getItemMeta();
         if (meta != null) {
             meta.setDisplayName("§6§lMjolnir - " + player.getName());
             meta.setLore(java.util.Arrays.asList(
@@ -133,6 +147,8 @@ public class MjolnirListener implements Listener {
         Vector direction = player.getLocation().getDirection().normalize().multiply(2);
         stand.setVelocity(direction);
 
+        player.sendMessage("§6[Mjolnir] Mjolnir thrown!");
+
         // Track for damage and return
         new BukkitRunnable() {
             int ticks = 0;
@@ -151,6 +167,7 @@ public class MjolnirListener implements Listener {
                     if (distance < 1.5) {
                         // Deal 30 hearts damage (60 damage)
                         entity.damage(60, player);
+                        player.sendMessage("§6[Mjolnir] Hit! Returning...");
                         stand.remove();
                         this.cancel();
                         return;
@@ -192,7 +209,7 @@ public class MjolnirListener implements Listener {
         if (event.getEntity() instanceof LivingEntity) {
             LivingEntity target = (LivingEntity) event.getEntity();
 
-            // Summon lightning
+            // Always summon lightning regardless of weather
             player.getWorld().strikeLightning(target.getLocation());
 
             // Extra damage
