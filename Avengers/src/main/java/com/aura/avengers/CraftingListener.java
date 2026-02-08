@@ -17,8 +17,6 @@ public class CraftingListener {
         ShapedRecipe mjolnirRecipe = new ShapedRecipe(mjolnirKey, mjolnir);
         
         mjolnirRecipe.shape(
-            "MT",
-            "MT",
             "MT"
         );
         mjolnirRecipe.setIngredient('M', Material.MACE);
