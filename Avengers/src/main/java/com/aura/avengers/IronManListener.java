@@ -1,16 +1,47 @@
 package com.aura.avengers;
 
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 public class IronManListener implements Listener {
+
+    @EventHandler
+    public void onIronManDamage(EntityDamageEvent event) {
+        if (!(event.getEntity() instanceof Player)) {
+            return;
+        }
+
+        Player player = (Player) event.getEntity();
+        ItemStack helmet = player.getInventory().getHelmet();
+        ItemStack chestplate = player.getInventory().getChestplate();
+        ItemStack shield = player.getInventory().getItemInOffHand();
+
+        // Check if player has Iron Man armor
+        boolean hasHelmet = helmet != null && helmet.getType() == Material.NETHERITE_HELMET
+                && helmet.getItemMeta() != null && helmet.getItemMeta().hasDisplayName()
+                && helmet.getItemMeta().getDisplayName().contains("Iron Man");
+
+        boolean hasChestplate = chestplate != null && chestplate.getType() == Material.NETHERITE_CHESTPLATE
+                && chestplate.getItemMeta() != null && chestplate.getItemMeta().hasDisplayName()
+                && chestplate.getItemMeta().getDisplayName().contains("Iron Man");
+
+        boolean hasShield = shield != null && shield.getType() == Material.SHIELD
+                && shield.getItemMeta() != null && shield.getItemMeta().hasDisplayName()
+                && shield.getItemMeta().getDisplayName().contains("Captain America");
+
+        // If wearing Iron Man armor and holding Captain Shield, shield takes no damage
+        if (hasHelmet && hasChestplate && hasShield) {
+            event.setCancelled(true);
+            player.sendMessage("§c[Iron Man] Shield protected you!");
+        }
+    }
 
     @EventHandler
     public void onGlovesUse(PlayerInteractEvent event) {
@@ -67,8 +98,8 @@ public class IronManListener implements Listener {
     }
 
     private void shootBeam(Player player, LivingEntity target) {
-        Location from = player.getEyeLocation();
-        Location to = target.getLocation().add(0, target.getHeight() / 2, 0);
+        org.bukkit.Location from = player.getEyeLocation();
+        org.bukkit.Location to = target.getLocation().add(0, target.getHeight() / 2, 0);
 
         // Draw beam effect
         drawBeam(from, to);
@@ -79,12 +110,12 @@ public class IronManListener implements Listener {
         player.sendMessage("§c[Iron Man] Beam fired!");
     }
 
-    private void drawBeam(Location from, Location to) {
+    private void drawBeam(org.bukkit.Location from, org.bukkit.Location to) {
         Vector direction = to.toVector().subtract(from.toVector()).normalize();
         double distance = from.distance(to);
 
         for (double i = 0; i < distance; i += 0.5) {
-            Location particleLocation = from.clone().add(direction.clone().multiply(i));
+            org.bukkit.Location particleLocation = from.clone().add(direction.clone().multiply(i));
             from.getWorld().spawnParticle(org.bukkit.Particle.FLAME, particleLocation, 5, 0.1, 0.1, 0.1, 0.1);
         }
     }
