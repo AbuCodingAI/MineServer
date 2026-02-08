@@ -1,7 +1,10 @@
 com\aura\avengers\AvengersCommands.class
 com\aura\avengers\MjolnirListener.class
+com\aura\avengers\MjolnirListener$3.class
 com\aura\avengers\CraftingListener.class
 com\aura\avengers\IronManListener.class
+com\aura\avengers\MjolnirListener$1.class
 com\aura\avengers\HawkeyeListener.class
+com\aura\avengers\MjolnirListener$2.class
 com\aura\avengers\CaptainShieldListener.class
 com\aura\avengers\AvengersPlugin.class

@@ -4,8 +4,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class AvengersPlugin extends JavaPlugin {
 
+    private static AvengersPlugin instance;
+
     @Override
     public void onEnable() {
+        instance = this;
+
         AvengersCommands commands = new AvengersCommands();
         MjolnirListener mjolnirListener = new MjolnirListener();
         IronManListener ironManListener = new IronManListener();
@@ -38,5 +42,9 @@ public class AvengersPlugin extends JavaPlugin {
     @Override
     public void onDisable() {
         getLogger().info("Avengers plugin disabled!");
+    }
+
+    public static AvengersPlugin getInstance() {
+        return instance;
     }
 }
