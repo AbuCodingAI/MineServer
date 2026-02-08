@@ -39,21 +39,48 @@ public class CraftingListener {
         
         Bukkit.addRecipe(glovesRecipe);
 
-        // Captain America Shield Recipe: Shield + Loyalty book + Unbreaking book
+        // Vibranium Recipe: 9 iron blocks → 1 vibranium
+        ItemStack vibranium = createVibranium();
+        NamespacedKey vibraniumKey = new NamespacedKey(plugin, "vibranium");
+        ShapedRecipe vibraniumRecipe = new ShapedRecipe(vibraniumKey, vibranium);
+        
+        vibraniumRecipe.shape(
+            "III",
+            "III",
+            "III"
+        );
+        vibraniumRecipe.setIngredient('I', Material.IRON_BLOCK);
+        
+        Bukkit.addRecipe(vibraniumRecipe);
+
+        // Captain America Shield Recipe: 9 vibranium + 1 shield in center
         ItemStack shield = createCaptainShield();
         NamespacedKey shieldKey = new NamespacedKey(plugin, "captain_shield");
         ShapedRecipe shieldRecipe = new ShapedRecipe(shieldKey, shield);
         
         shieldRecipe.shape(
-            "SLS",
-            "LUL",
-            "SLS"
+            "VVV",
+            "VSV",
+            "VVV"
         );
+        shieldRecipe.setIngredient('V', Material.LAPIS_BLOCK);
         shieldRecipe.setIngredient('S', Material.SHIELD);
-        shieldRecipe.setIngredient('L', Material.LAPIS_LAZULI);
-        shieldRecipe.setIngredient('U', Material.DIAMOND);
         
         Bukkit.addRecipe(shieldRecipe);
+    }
+
+    private static ItemStack createVibranium() {
+        ItemStack vibranium = new ItemStack(Material.LAPIS_BLOCK);
+        ItemMeta meta = vibranium.getItemMeta();
+        if (meta != null) {
+            meta.setDisplayName("§9§lVibranium");
+            meta.setLore(java.util.Arrays.asList(
+                    "§7The legendary metal",
+                    "§7Used to craft Captain America Shield"
+            ));
+            vibranium.setItemMeta(meta);
+        }
+        return vibranium;
     }
 
     private static ItemStack createMjolnir() {
