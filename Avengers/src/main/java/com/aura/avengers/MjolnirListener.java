@@ -56,29 +56,6 @@ public class MjolnirListener implements Listener {
                     chargeTask.put(player.getUniqueId(), task);
                 }
             }
-        } else if ((event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_AIR
-                || event.getAction() == org.bukkit.event.block.Action.RIGHT_CLICK_BLOCK)
-                && (item == null || item.getType() == Material.AIR)) {
-
-            // Player doesn't have Mjolnir, try to summon it
-            if (!chargeStartTime.containsKey(player.getUniqueId())) {
-                chargeStartTime.put(player.getUniqueId(), System.currentTimeMillis());
-                player.sendMessage("§6[Mjolnir] Summoning... Hold right click for 3 seconds");
-
-                // Schedule summon after 3 seconds
-                BukkitRunnable task = new BukkitRunnable() {
-                    @Override
-                    public void run() {
-                        if (chargeStartTime.containsKey(player.getUniqueId())) {
-                            summonMjolnir(player);
-                            chargeStartTime.remove(player.getUniqueId());
-                            chargeTask.remove(player.getUniqueId());
-                        }
-                    }
-                };
-                task.runTaskLater(AvengersPlugin.getInstance(), 60);
-                chargeTask.put(player.getUniqueId(), task);
-            }
         }
     }
 

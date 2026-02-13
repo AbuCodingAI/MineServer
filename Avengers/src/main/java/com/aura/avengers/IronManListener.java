@@ -1,5 +1,9 @@
 package com.aura.avengers;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.UUID;
+
 import org.bukkit.Material;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
@@ -11,6 +15,8 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.Vector;
 
 public class IronManListener implements Listener {
+
+    private Map<UUID, Long> beamCooldown = new HashMap<>();
 
     @EventHandler
     public void onIronManDamage(EntityDamageEvent event) {
@@ -67,15 +73,27 @@ public class IronManListener implements Listener {
 
         event.setCancelled(true);
 
-        // Find closest entity
-        LivingEntity target = findClosestEntity(player, 50);
+        // Check cooldown (0.5 seconds = 500 milliseconds)
+        UUID uuid = player.getUniqueId();
+        long currentTime = System.currentTimeMillis();
+        if (beamCooldown.containsKey(uuid)) {
+            long lastUse = beamCooldown.get(uuid);
+            if (currentTime - lastUse < 500) {
+                player.sendMessage("§c[Iron Man] Beam is on cooldown!");
+                return;
+            }
+        }
+
+        // Find closest entity within 10 blocks
+        LivingEntity target = findClosestEntity(player, 10);
         if (target == null) {
-            player.sendMessage("§cNo target found!");
+            player.sendMessage("§cNo target found within 10 blocks!");
             return;
         }
 
         // Shoot beam
         shootBeam(player, target);
+        beamCooldown.put(uuid, currentTime);
     }
 
     private LivingEntity findClosestEntity(Player player, double range) {

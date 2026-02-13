@@ -66,6 +66,16 @@ public class I_am_Aura_67Commands implements CommandExecutor {
             case "givearmor":
                 giveEnchantedArmor(player);
                 return true;
+            case "givesword":
+                giveEnchantedSword(player);
+                return true;
+            case "removewarp":
+                if (args.length == 0) {
+                    player.sendMessage("§cUsage: /removewarp <warpname>");
+                    return true;
+                }
+                removeWarp(player, args[0]);
+                return true;
         }
 
         return false;
@@ -266,5 +276,65 @@ public class I_am_Aura_67Commands implements CommandExecutor {
         boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FROST_WALKER, 255);
         boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SOUL_SPEED, 255);
         boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SWIFT_SNEAK, 255);
+    }
+
+    private void giveEnchantedSword(Player player) {
+        ItemStack sword = new ItemStack(Material.NETHERITE_SWORD);
+
+        // Add all sword enchantments at level 255
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SHARPNESS, 255);
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SMITE, 255);
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.BANE_OF_ARTHROPODS, 255);
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.KNOCKBACK, 255);
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FIRE_ASPECT, 255);
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.LOOTING, 255);
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SWEEPING_EDGE, 255);
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
+        sword.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+
+        player.getInventory().addItem(sword);
+        player.sendMessage("§a[Sword] You have been given a fully enchanted netherite sword!");
+    }
+
+    private void giveAllTools(Player player) {
+        // Pickaxe
+        ItemStack pickaxe = new ItemStack(Material.NETHERITE_PICKAXE);
+        pickaxe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.EFFICIENCY, 255);
+        pickaxe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FORTUNE, 255);
+        pickaxe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
+        pickaxe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+
+        // Axe
+        ItemStack axe = new ItemStack(Material.NETHERITE_AXE);
+        axe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.EFFICIENCY, 255);
+        axe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.SHARPNESS, 255);
+        axe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
+        axe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+
+        // Shovel
+        ItemStack shovel = new ItemStack(Material.NETHERITE_SHOVEL);
+        shovel.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.EFFICIENCY, 255);
+        shovel.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FORTUNE, 255);
+        shovel.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
+        shovel.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+
+        // Hoe
+        ItemStack hoe = new ItemStack(Material.NETHERITE_HOE);
+        hoe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.EFFICIENCY, 255);
+        hoe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FORTUNE, 255);
+        hoe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
+        hoe.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+
+        player.getInventory().addItem(pickaxe);
+        player.getInventory().addItem(axe);
+        player.getInventory().addItem(shovel);
+        player.getInventory().addItem(hoe);
+
+        player.sendMessage("§a[Tools] You have been given all fully enchanted netherite tools!");
+    }
+
+    private void removeWarp(Player player, String warpName) {
+        // This delegates to EssentialsX /delwarp command
+        player.performCommand("delwarp " + warpName);
     }
 }

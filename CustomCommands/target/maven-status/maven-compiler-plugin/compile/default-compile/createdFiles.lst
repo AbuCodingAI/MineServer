@@ -1,3 +1,14 @@
-com\aura\customcommands\LobbySelector.class
+com\aura\customcommands\ManhuntGame.class
+com\aura\customcommands\PermissionManager.class
+com\aura\customcommands\MineSystem$1.class
 com\aura\customcommands\CustomCommandsPlugin.class
+com\aura\customcommands\MineSystem$MineLevel.class
+com\aura\customcommands\PlayerTagListener.class
+com\aura\customcommands\PermissionManager$Role.class
 com\aura\customcommands\I_am_Aura_67Commands.class
+com\aura\customcommands\ManhuntGame$WinCondition.class
+com\aura\customcommands\LobbySelector.class
+com\aura\customcommands\ManhuntGame$HunterWinCondition.class
+com\aura\customcommands\ManhuntGame$ManhuntRewards.class
+com\aura\customcommands\MineSystem$2.class
+com\aura\customcommands\MineSystem.class

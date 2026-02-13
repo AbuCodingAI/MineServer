@@ -23,11 +23,11 @@ public class DisenchantingTableListener implements Listener {
         }
 
         Block block = event.getClickedBlock();
-        if (block == null || block.getType() != Material.ENCHANTING_TABLE) {
+        if (block == null || block.getType() != Material.LAPIS_BLOCK) {
             return;
         }
 
-        // Check if this is a disenchanting table (check nearby blocks)
+        // Check if this is a disenchanting table (Lapis on top, Obsidian on bottom, Book in middle)
         if (!isDisenchantingTable(block)) {
             return;
         }
@@ -50,8 +50,7 @@ public class DisenchantingTableListener implements Listener {
     }
 
     private boolean isDisenchantingTable(Block block) {
-        // Check if surrounded by the disenchanting table pattern
-        // Lapis on top, obsidian on bottom, book in middle
+        // Check pattern: Lapis on top, Obsidian on bottom, Book in middle
         Block above = block.getRelative(0, 1, 0);
         Block below = block.getRelative(0, -1, 0);
 
@@ -70,6 +69,26 @@ public class DisenchantingTableListener implements Listener {
             player.sendMessage("§c[Disenchanting] Item has no enchantments!");
             return;
         }
+
+        // Check if player has lapis lazuli
+        ItemStack lapisItem = null;
+        int lapisSlot = -1;
+        for (int i = 0; i < player.getInventory().getSize(); i++) {
+            ItemStack slot = player.getInventory().getItem(i);
+            if (slot != null && slot.getType() == Material.LAPIS_LAZULI && slot.getAmount() > 0) {
+                lapisItem = slot;
+                lapisSlot = i;
+                break;
+            }
+        }
+
+        if (lapisItem == null) {
+            player.sendMessage("§c[Disenchanting] You need 1 Lapis Lazuli to disenchant!");
+            return;
+        }
+
+        // Remove 1 lapis lazuli
+        lapisItem.setAmount(lapisItem.getAmount() - 1);
 
         // Create enchanted books for each enchantment
         for (Map.Entry<Enchantment, Integer> entry : enchantments.entrySet()) {

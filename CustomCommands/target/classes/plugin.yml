@@ -21,3 +21,9 @@ commands:
   givearmor:
     description: Give yourself full enchanted netherite armor
     usage: /givearmor
+  givesword:
+    description: Give yourself a fully enchanted netherite sword
+    usage: /givesword
+  removewarp:
+    description: Remove a warp point
+    usage: /removewarp <warpname>
