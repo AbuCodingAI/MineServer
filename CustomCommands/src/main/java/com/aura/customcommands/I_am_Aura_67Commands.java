@@ -202,8 +202,7 @@ public class I_am_Aura_67Commands implements CommandExecutor {
                 player.performCommand("warp pvp");
                 break;
             case "survival":
-                player.sendMessage("§a[Lobby] Joining Pure Survival...");
-                player.sendMessage("§7(Pure Survival world not yet set up)");
+                player.performCommand("mv tp world");
                 break;
             case "manhunt":
                 player.sendMessage("§a[Lobby] Joining Manhunt...");
@@ -245,6 +244,11 @@ public class I_am_Aura_67Commands implements CommandExecutor {
         // Universal enchantments for all armor pieces
         item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.UNBREAKING, 255);
         item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.MENDING, 255);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.THORNS, 255);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FIRE_PROTECTION, 255);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROJECTILE_PROTECTION, 255);
+        item.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.BLAST_PROTECTION, 255);
     }
 
     private void addHelmetEnchantments(ItemStack helmet) {
@@ -270,7 +274,6 @@ public class I_am_Aura_67Commands implements CommandExecutor {
 
     private void addBootsEnchantments(ItemStack boots) {
         // Boots-specific enchantments
-        boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.PROTECTION, 255);
         boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FEATHER_FALLING, 255);
         boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.DEPTH_STRIDER, 255);
         boots.addUnsafeEnchantment(org.bukkit.enchantments.Enchantment.FROST_WALKER, 255);
