@@ -5,7 +5,7 @@ import org.bukkit.entity.Player;
 public class PermissionManager {
     
     private static final String[] OWNERS = {"IamAura67", "I_am_Aura_67"};
-    private static final String[] ADMINS = {}; // Add admin names here
+    private static final String[] ADMINS = {"AdminName1", "AdminName2"}; // Add admin names here
     
     public enum Role {
         OWNER(3),

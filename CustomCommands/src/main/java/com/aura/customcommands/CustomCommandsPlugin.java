@@ -9,6 +9,7 @@ public class CustomCommandsPlugin extends JavaPlugin {
         I_am_Aura_67Commands commands = new I_am_Aura_67Commands();
         LobbySelector lobbySelector = new LobbySelector(this);
         PlayerTagListener tagListener = new PlayerTagListener();
+        CommandRestrictionListener restrictionListener = new CommandRestrictionListener();
 
         if (getCommand("spawnancientdebris") != null) {
             getCommand("spawnancientdebris").setExecutor(commands);
@@ -37,6 +38,7 @@ public class CustomCommandsPlugin extends JavaPlugin {
 
         getServer().getPluginManager().registerEvents(lobbySelector, this);
         getServer().getPluginManager().registerEvents(tagListener, this);
+        getServer().getPluginManager().registerEvents(restrictionListener, this);
 
         getLogger().info("CustomCommands plugin enabled!");
     }
