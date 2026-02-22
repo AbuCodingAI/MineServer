@@ -18,8 +18,8 @@ public class PlayerTagListener implements Listener {
         }
         // Add admin tag
         else if (PermissionManager.isAdmin(player)) {
-            player.setDisplayName("§6§l[ADMIN] §r" + player.getName());
-            player.setPlayerListName("§6§l[ADMIN] §r" + player.getName());
+            player.setDisplayName("§9§l[ADMIN] §r" + player.getName());
+            player.setPlayerListName("§9§l[ADMIN] §r" + player.getName());
         }
     }
 }
