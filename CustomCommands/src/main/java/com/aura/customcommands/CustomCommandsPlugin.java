@@ -41,6 +41,12 @@ public class CustomCommandsPlugin extends JavaPlugin {
         if (getCommand("nocheats") != null) {
             getCommand("nocheats").setExecutor(commands);
         }
+        if (getCommand("player") != null) {
+            getCommand("player").setExecutor(commands);
+        }
+        if (getCommand("unplayer") != null) {
+            getCommand("unplayer").setExecutor(commands);
+        }
 
         getServer().getPluginManager().registerEvents(lobbySelector, this);
         getServer().getPluginManager().registerEvents(tagListener, this);

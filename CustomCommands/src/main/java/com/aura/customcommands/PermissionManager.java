@@ -71,4 +71,8 @@ public class PermissionManager {
             ADMINS.add(username);
         }
     }
+
+    public static void removeAdmin(String username) {
+        ADMINS.remove(username);
+    }
 }

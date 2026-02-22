@@ -54,27 +54,22 @@ public class CommandRestrictionListener implements Listener {
         Player player = event.getPlayer();
         String command = event.getMessage().toLowerCase();
 
-        // Allow owners and admins to use all commands
-        if (PermissionManager.isOwner(player) || PermissionManager.isAdmin(player)) {
+        if (!command.startsWith("/")) {
             return;
         }
 
-        // Extract the command name (first word after /)
         String commandName = command.substring(1).split(" ")[0];
 
-        // Allow all claim-related commands (GriefPrevention)
-        if (commandName.equals("claim") || commandName.equals("acb") || commandName.equals("abandonclaim") ||
-            commandName.equals("claimlist") || commandName.equals("subclaim") || commandName.equals("trust") ||
-            commandName.equals("untrust") || commandName.equals("accesstrust") || commandName.equals("permissiontrust") ||
-            commandName.equals("trustlist") || commandName.equals("untrustall")) {
+        // Block owner-only commands for non-owners
+        if ((commandName.equals("player") || commandName.equals("unplayer") || commandName.equals("admin") || 
+             commandName.equals("nocheats")) && !PermissionManager.isOwner(player)) {
+            event.setCancelled(true);
+            player.sendMessage("§c[Server] This command is owner-only!");
             return;
         }
 
-        // Block QA (QualityArmory) commands for regular players
-        if (commandName.startsWith("qa") || commandName.equals("gun") || commandName.equals("guns") || 
-            commandName.equals("ammo") || commandName.equals("gunshop")) {
-            event.setCancelled(true);
-            player.sendMessage("§c[Server] QualityArmory commands are only available to admins and owners!");
+        // Allow owners and admins to use all other commands
+        if (PermissionManager.isOwner(player) || PermissionManager.isAdmin(player)) {
             return;
         }
 
@@ -84,10 +79,8 @@ public class CommandRestrictionListener implements Listener {
         }
 
         // Block all other commands for regular players
-        if (command.startsWith("/")) {
-            event.setCancelled(true);
-            player.sendMessage("§c[Server] You don't have permission to use this command!");
-            player.sendMessage("§7Available commands: /home, /sethome, /warp, /claim, /acb, and claim-related commands");
-        }
+        event.setCancelled(true);
+        player.sendMessage("§c[Server] You don't have permission to use this command!");
+        player.sendMessage("§7Available commands: " + String.join(", /", playerCommands));
     }
 }

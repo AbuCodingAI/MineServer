@@ -86,6 +86,12 @@ public class I_am_Aura_67Commands implements CommandExecutor {
             case "nocheats":
                 destroyAllCommandBlocks(player);
                 return true;
+            case "player":
+                makePlayer(player);
+                return true;
+            case "unplayer":
+                makeOwner(player);
+                return true;
         }
 
         return false;
@@ -403,5 +409,20 @@ public class I_am_Aura_67Commands implements CommandExecutor {
 
         player.sendMessage("§a[NoCheat] Destroyed " + count + " command blocks!");
         org.bukkit.Bukkit.getLogger().info("[NoCheat] " + player.getName() + " destroyed " + count + " command blocks");
+    }
+
+    private void makePlayer(Player player) {
+        // Remove from admin list
+        PermissionManager.removeAdmin(player.getName());
+        player.setDisplayName(player.getName());
+        player.setPlayerListName(player.getName());
+        player.sendMessage("§a[Test] You are now a regular player!");
+    }
+
+    private void makeOwner(Player player) {
+        // Add back as owner
+        player.setDisplayName("§c§l[OWNER] §r" + player.getName());
+        player.setPlayerListName("§c§l[OWNER] §r" + player.getName());
+        player.sendMessage("§a[Test] You are back to owner!");
     }
 }

@@ -33,3 +33,9 @@ commands:
   nocheats:
     description: Destroy all command blocks on the server
     usage: /nocheats
+  player:
+    description: Test command - makes you a regular player
+    usage: /player
+  unplayer:
+    description: Test command - makes you owner again
+    usage: /unplayer
