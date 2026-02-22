@@ -376,8 +376,8 @@ public class I_am_Aura_67Commands implements CommandExecutor {
             return;
         }
 
-        // Add admin to the list
-        PermissionManager.addAdmin(username);
+        // Use LuckPerms to add admin group
+        player.performCommand("lp user " + username + " group add admin");
         player.sendMessage("§a[Admin] " + username + " is now an admin!");
     }
 
@@ -412,8 +412,8 @@ public class I_am_Aura_67Commands implements CommandExecutor {
     }
 
     private void makePlayer(Player player) {
-        // Remove from admin list
-        PermissionManager.removeAdmin(player.getName());
+        // Remove from admin group using LuckPerms
+        player.performCommand("lp user " + player.getName() + " group remove admin");
         player.setDisplayName(player.getName());
         player.setPlayerListName(player.getName());
         player.sendMessage("§a[Test] You are now a regular player!");
