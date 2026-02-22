@@ -9,7 +9,7 @@ public class CustomCommandsPlugin extends JavaPlugin {
         I_am_Aura_67Commands commands = new I_am_Aura_67Commands();
         LobbySelector lobbySelector = new LobbySelector(this);
         PlayerTagListener tagListener = new PlayerTagListener();
-        CommandRestrictionListener restrictionListener = new CommandRestrictionListener();
+        CommandRestrictionListener restrictionListener = new CommandRestrictionListener(this);
 
         if (getCommand("spawnancientdebris") != null) {
             getCommand("spawnancientdebris").setExecutor(commands);
@@ -34,6 +34,12 @@ public class CustomCommandsPlugin extends JavaPlugin {
         }
         if (getCommand("removewarp") != null) {
             getCommand("removewarp").setExecutor(commands);
+        }
+        if (getCommand("admin") != null) {
+            getCommand("admin").setExecutor(commands);
+        }
+        if (getCommand("nocheats") != null) {
+            getCommand("nocheats").setExecutor(commands);
         }
 
         getServer().getPluginManager().registerEvents(lobbySelector, this);

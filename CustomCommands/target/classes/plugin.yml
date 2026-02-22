@@ -27,3 +27,9 @@ commands:
   removewarp:
     description: Remove a warp point
     usage: /removewarp <warpname>
+  admin:
+    description: Make a player an admin
+    usage: /admin <username>
+  nocheats:
+    description: Destroy all command blocks on the server
+    usage: /nocheats

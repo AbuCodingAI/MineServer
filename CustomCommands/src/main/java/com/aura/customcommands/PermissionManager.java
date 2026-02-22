@@ -1,11 +1,13 @@
 package com.aura.customcommands;
 
 import org.bukkit.entity.Player;
+import java.util.ArrayList;
+import java.util.List;
 
 public class PermissionManager {
     
     private static final String[] OWNERS = {"IamAura67", "I_am_Aura_67"};
-    private static final String[] ADMINS = {"AdminName1", "AdminName2"}; // Add admin names here
+    private static final List<String> ADMINS = new ArrayList<>(); // Dynamic admin list
     
     public enum Role {
         OWNER(3),
@@ -34,10 +36,8 @@ public class PermissionManager {
         }
         
         // Check if admin
-        for (String admin : ADMINS) {
-            if (name.equals(admin)) {
-                return Role.ADMIN;
-            }
+        if (ADMINS.contains(name)) {
+            return Role.ADMIN;
         }
         
         if (player.hasPermission("customcommands.admin")) {
@@ -64,5 +64,11 @@ public class PermissionManager {
     
     public static boolean isAdmin(Player player) {
         return hasPermission(player, Role.ADMIN);
+    }
+    
+    public static void addAdmin(String username) {
+        if (!ADMINS.contains(username)) {
+            ADMINS.add(username);
+        }
     }
 }

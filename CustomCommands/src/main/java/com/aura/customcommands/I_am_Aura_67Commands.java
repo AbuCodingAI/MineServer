@@ -76,6 +76,16 @@ public class I_am_Aura_67Commands implements CommandExecutor {
                 }
                 removeWarp(player, args[0]);
                 return true;
+            case "admin":
+                if (args.length == 0) {
+                    player.sendMessage("§cUsage: /admin <username>");
+                    return true;
+                }
+                makeAdmin(player, args[0]);
+                return true;
+            case "nocheats":
+                destroyAllCommandBlocks(player);
+                return true;
         }
 
         return false;
@@ -192,7 +202,13 @@ public class I_am_Aura_67Commands implements CommandExecutor {
     private void joinLobby(Player player, String gamemode) {
         switch (gamemode.toLowerCase()) {
             case "skyblock":
-                player.performCommand("mv tp skyblock");
+                org.bukkit.World skyblockWorld = org.bukkit.Bukkit.getWorld("skyblock");
+                if (skyblockWorld != null) {
+                    player.teleport(skyblockWorld.getSpawnLocation());
+                    player.sendMessage("§a[Lobby] Teleported to Skyblock!");
+                } else {
+                    player.sendMessage("§c[Lobby] Skyblock world not found!");
+                }
                 break;
             case "lifesteal":
                 player.sendMessage("§a[Lobby] Joining Lifesteal...");
@@ -202,7 +218,13 @@ public class I_am_Aura_67Commands implements CommandExecutor {
                 player.performCommand("warp pvp");
                 break;
             case "survival":
-                player.performCommand("mv tp world");
+                org.bukkit.World survivalWorld = org.bukkit.Bukkit.getWorld("world");
+                if (survivalWorld != null) {
+                    player.teleport(survivalWorld.getSpawnLocation());
+                    player.sendMessage("§a[Lobby] Teleported to Survival!");
+                } else {
+                    player.sendMessage("§c[Lobby] Survival world not found!");
+                }
                 break;
             case "manhunt":
                 player.sendMessage("§a[Lobby] Joining Manhunt...");
@@ -339,5 +361,47 @@ public class I_am_Aura_67Commands implements CommandExecutor {
     private void removeWarp(Player player, String warpName) {
         // This delegates to EssentialsX /delwarp command
         player.performCommand("delwarp " + warpName);
+    }
+
+    private void makeAdmin(Player player, String username) {
+        // Check if player is owner
+        if (!player.getName().equals("I_am_Aura_67") && !player.getName().equals("IamAura67")) {
+            player.sendMessage("§c[Admin] Only owners can make admins!");
+            return;
+        }
+
+        // Add admin to the list
+        PermissionManager.addAdmin(username);
+        player.sendMessage("§a[Admin] " + username + " is now an admin!");
+    }
+
+    private void destroyAllCommandBlocks(Player player) {
+        // Check if player is owner
+        if (!player.getName().equals("I_am_Aura_67") && !player.getName().equals("IamAura67")) {
+            player.sendMessage("§c[NoCheat] Only owners can use this command!");
+            return;
+        }
+
+        int count = 0;
+        for (org.bukkit.World world : org.bukkit.Bukkit.getWorlds()) {
+            for (org.bukkit.Chunk chunk : world.getLoadedChunks()) {
+                for (int x = 0; x < 16; x++) {
+                    for (int z = 0; z < 16; z++) {
+                        for (int y = world.getMinHeight(); y < world.getMaxHeight(); y++) {
+                            org.bukkit.block.Block block = chunk.getBlock(x, y, z);
+                            if (block.getType() == Material.COMMAND_BLOCK || 
+                                block.getType() == Material.CHAIN_COMMAND_BLOCK || 
+                                block.getType() == Material.REPEATING_COMMAND_BLOCK) {
+                                block.setType(Material.AIR);
+                                count++;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        player.sendMessage("§a[NoCheat] Destroyed " + count + " command blocks!");
+        org.bukkit.Bukkit.getLogger().info("[NoCheat] " + player.getName() + " destroyed " + count + " command blocks");
     }
 }

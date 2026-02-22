@@ -1,0 +1,15 @@
+{
+  "playerCommands": [
+    "home",
+    "sethome",
+    "warp",
+    "claim",
+    "acb",
+    "abandonallclaims",
+    "abandonclaims",
+    "tp",
+    "repair",
+    "enchant",
+    "lobby"
+  ]
+}
