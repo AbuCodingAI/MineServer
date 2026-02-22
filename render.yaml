@@ -7,27 +7,28 @@ services:
     healthCheckPath: null
     healthCheckDisabled: true
     autoDeploy: true
+    dockerfilePath: ./Dockerfile
     envVars:
       - key: EULA
         value: "TRUE"
       - key: TYPE
-        value: vanilla
+        value: paper
       - key: VERSION
         value: latest
       - key: MEMORY
-        value: "450M"
+        value: "10G"
       - key: DIFFICULTY
         value: normal
       - key: GAMEMODE
         value: survival
       - key: MOTD
-        value: "Welcome to Abdullah's server!"
+        value: "Welcome to the SchoolMC server!"
       - key: ONLINE_MODE
         value: "FALSE"
       - key: INIT_MEMORY
-        value: "256M"
+        value: "5G"
       - key: MAX_MEMORY
-        value: "450M"
+        value: "10G"
     ports:
       - port: 25565
         protocol: TCP
