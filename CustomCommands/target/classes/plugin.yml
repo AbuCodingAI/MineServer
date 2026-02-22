@@ -1,6 +1,7 @@
 name: CustomCommands
 version: 1.0
 main: com.aura.customcommands.CustomCommandsPlugin
+api-version: 1.13
 description: Custom commands for testing
 commands:
   spawnancientdebris:
