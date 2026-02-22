@@ -36,7 +36,11 @@ public class I_am_Aura_67Commands implements CommandExecutor {
                 spawnDiamonds(player);
                 return true;
             case "makebox":
-                makeBox(player);
+                if (args.length == 0) {
+                    player.sendMessage("§cUsage: /makebox <size>");
+                    return true;
+                }
+                makeBox(player, args);
                 return true;
             case "spawn":
                 if (args.length == 0) {
@@ -133,15 +137,25 @@ public class I_am_Aura_67Commands implements CommandExecutor {
         player.sendMessage("§aSpawned 30x30x30 Diamond cube!");
     }
 
-    private void makeBox(Player player) {
+    private void makeBox(Player player, String[] args) {
+        int size = 30;
+
+        if (args.length > 0) {
+            try {
+                size = Integer.parseInt(args[0]);
+            } catch (NumberFormatException e) {
+                player.sendMessage("§cInvalid size! Using default size of 30.");
+            }
+        }
+
         var location = player.getLocation();
         var world = player.getWorld();
         int startX = location.getBlockX();
         int startY = location.getBlockY();
         int startZ = location.getBlockZ();
-        int endX = startX + SIZE - 1;
-        int endY = startY + SIZE - 1;
-        int endZ = startZ + SIZE - 1;
+        int endX = startX + size - 1;
+        int endY = startY + size - 1;
+        int endZ = startZ + size - 1;
 
         // Fill entire area with air first
         for (int x = startX; x <= endX; x++) {
@@ -164,7 +178,7 @@ public class I_am_Aura_67Commands implements CommandExecutor {
             }
         }
 
-        player.sendMessage("§aCreated 30x30x30 hollow box with wooden plank walls!");
+        player.sendMessage("§aCreated " + size + "x" + size + "x" + size + " hollow box with wooden plank walls!");
     }
 
     private void spawnBlock(Player player, String[] args) {

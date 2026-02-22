@@ -10,8 +10,8 @@ commands:
     description: Spawn a 30x30x30 cube of diamonds
     usage: /spawndiamonds
   makebox:
-    description: Make a 30x30x30 hollow box with wooden planks
-    usage: /makebox
+    description: Make a hollow box with wooden planks
+    usage: /makebox <size>
   spawn:
     description: Spawn any block type in a cube
     usage: /spawn <block_name> [size]
