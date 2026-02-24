@@ -19,7 +19,7 @@ services:
       RCON_PASSWORD: "minecraft"
     volumes:
       - minecraft_data:/data
-      - ./plugins:/data/plugins:rw
+      - ./plugins:/plugins:ro
     user: "1000:1000"
     restart: unless-stopped
 

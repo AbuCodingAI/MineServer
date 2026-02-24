@@ -13,3 +13,5 @@ ENV JVM_OPTS="-XX:+UseG1GC -XX:MaxGCPauseMillis=100 -XX:+ParallelRefProcEnabled"
 EXPOSE 25565
 
 VOLUME ["/data"]
+
+COPY plugins/ /plugins/
