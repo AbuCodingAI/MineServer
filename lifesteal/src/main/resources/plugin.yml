@@ -1,0 +1,5 @@
+name: Lifesteal
+version: 1.0
+main: com.aura.lifesteal.LifestealPlugin
+api-version: "1.13"
+description: Lifesteal plugin - kill for a life, die to lose a life
